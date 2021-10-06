@@ -32,15 +32,14 @@ Font Roboto_Regular;
     
         setBackground(Color.decode("#252526"));
         setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.decode("#252526")));
+        setLayout(new FlowLayout());
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(4,1,0,10));
+        panel.setLayout(new GridLayout(2,1,0,0));
         panel.setBorder(BorderFactory.createEmptyBorder(0,13,0,13));
         panel.setBackground(Color.decode("#252526"));
 
         //ICON -> Google icons einbinden oder als Bilddatei...
-
-      
 
         JLabel img_label = new JLabel();
         img_label.setIcon(getNavIcon(url));
@@ -54,7 +53,8 @@ Font Roboto_Regular;
 
         try {
             //create the font to use. Specify the size!
-            InputStream myStream = new BufferedInputStream(new FileInputStream("src/fonts/Roboto-Bold.ttf"));
+            String dir = System.getProperty("user.dir") + "/LeagueTools/src/fonts/Roboto-Bold.ttf";
+            InputStream myStream = new BufferedInputStream(new FileInputStream(dir));
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, myStream);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             Roboto_Regular = customFont.deriveFont(13f);
@@ -67,7 +67,6 @@ Font Roboto_Regular;
                 e.printStackTrace();
             }
             
-        panel.add(getFiller());
         panel.add(img_label);
         panel.add(label);
         add(panel);
@@ -95,7 +94,7 @@ Font Roboto_Regular;
         ImageIcon icon_old = new ImageIcon(url);
         Image image = icon_old.getImage();
 
-        Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+        Image newimg = image.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
         return new ImageIcon(newimg);
     }
 

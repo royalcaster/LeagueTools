@@ -1,16 +1,13 @@
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
-import javax.swing.plaf.synth.SynthToolBarUI;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -48,7 +45,7 @@ public class Layout {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1280, 720);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setBackground(Color.red);
+        frame.setBackground(Color.decode("#1E1E1E"));
         
         root_panel = new JPanel(new BorderLayout());
         root_panel.setBackground(Color.white);
@@ -56,6 +53,7 @@ public class Layout {
         JPanel navbar_panel = new JPanel();
         navbar_panel.setLayout(new BoxLayout(navbar_panel, BoxLayout.Y_AXIS));
         navbar_panel.setBackground(Color.decode("#252526"));
+        navbar_panel.setBounds(0, 0, 60, 600);
      
         JPanel content_panel = new JPanel();
         content_panel.setBackground(Color.decode("#1E1E1E"));
@@ -64,19 +62,20 @@ public class Layout {
         MainNavButton button_champions;
         MainNavButton button_leistung;
         MainNavButton button_rolle;
-        MainNavButton test;
 
         try {
-            button_start = new MainNavButton("Start","src/img/home-button.png");
+            String dir = System.getProperty("user.dir");
+
+            button_start = new MainNavButton("Start",dir + "/LeagueTools/src/img/home-button.png");
             nav_buttons.add(button_start);
             
-            button_champions = new MainNavButton("Champions","src/img/superhero.png");
+            button_champions = new MainNavButton("Champions",dir + "/LeagueTools/src/img/superhero.png");
             nav_buttons.add(button_champions);
             
-            button_leistung = new MainNavButton("Leistung","src/img/speedometer.png");
+            button_leistung = new MainNavButton("Leistung",dir + "/LeagueTools/src/img/speedometer.png");
             nav_buttons.add(button_leistung);
             
-            button_rolle = new MainNavButton("Deine Rolle","src/img/swords.png");
+            button_rolle = new MainNavButton("Deine Rolle",dir + "/LeagueTools/src/img/swords.png");
             nav_buttons.add(button_rolle);
             
 
@@ -104,11 +103,12 @@ public class Layout {
                 }
             });
 
+            navbar_panel.add(Box.createRigidArea(new Dimension(0,100)));
             navbar_panel.add(button_start);
             navbar_panel.add(button_champions);
             navbar_panel.add(button_leistung);
             navbar_panel.add(button_rolle);
-
+            navbar_panel.add(Box.createRigidArea(new Dimension(0,100)));
             
             
         } catch (FontFormatException e) {
