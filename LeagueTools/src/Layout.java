@@ -40,7 +40,7 @@ public class Layout {
     
 
     //Fenster laden
-    public void initGUI(){
+    public void initGUI() throws IOException{
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1280, 720);

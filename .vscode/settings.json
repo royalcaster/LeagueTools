@@ -1,6 +1,7 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "LeagueTools/src/jsoup-1.14.3.jar"
+        "LeagueTools/src/jsoup-1.14.3.jar",
+        "LeagueTools/src/imgscalr-lib-4.2.jar"
     ]
 }

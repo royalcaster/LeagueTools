@@ -2,11 +2,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import org.imgscalr.Scalr;
+import java.awt.image.BufferedImage;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.event.MouseListener;
@@ -28,11 +32,11 @@ public class MainNavButton extends JPanel{
 
 Font Roboto_Regular;
 
-    public MainNavButton(String title, String url) throws FontFormatException {
+    public MainNavButton(String title, String url) throws FontFormatException, IOException {
     
         setBackground(Color.decode("#252526"));
         setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.decode("#252526")));
-        setLayout(new FlowLayout());
+        setLayout(new GridBagLayout());
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(2,1,0,0));
@@ -90,11 +94,11 @@ Font Roboto_Regular;
 
     }
 
-    public ImageIcon getNavIcon(String url) {
-        ImageIcon icon_old = new ImageIcon(url);
-        Image image = icon_old.getImage();
+    public ImageIcon getNavIcon(String url) throws IOException {
+        File src = new File(url);
+        BufferedImage img = ImageIO.read(src);
 
-        Image newimg = image.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+        BufferedImage newimg = Scalr.resize(img,Scalr.Method.QUALITY, 40, 40);
         return new ImageIcon(newimg);
     }
 
